@@ -1,18 +1,19 @@
 #include <cstdlib>
-#include <iostream>
+#include "Vorian.hpp"
 
 
-int main(int argc, char** argv) {
+
+int main(int argc, char **argv) {
     if (argc > 2) {
         std::cerr << "Usage: " << argv[0] << "file.vor" << std::endl;
         return EXIT_FAILURE;
     }
 
     if (argc == 2) {
-        std::cout << "Lets go to read file" << std::endl;
+        Vorian::runFile(argv[1]);
     
     } else{
-        std::cout << "Lets go REPL" << std::endl;
+        Vorian::runPrompt();
     }
     return EXIT_SUCCESS;
 }
