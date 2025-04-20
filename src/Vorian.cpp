@@ -44,6 +44,10 @@ void Vorian::runFile(const std::string& path) {
     
       std::string content(buffer.begin(), buffer.end());
       run(content);
+      if (Debug::hadError) {
+        std::exit(65);
+      
+      }
 }
 
 /**
@@ -72,7 +76,11 @@ void Vorian::runPrompt() {
 
 
 void Vorian::run(const std::string& source) {
-    std::cout << source;;
+    Scanner scanner(source);
+    std::vector<Token> tokens = scanner.scanTokens();
+    for ( auto& t : tokens) {
+        std::cout << t.toString() << std::endl;
+    }
 }
 
 

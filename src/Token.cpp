@@ -14,6 +14,21 @@ Token::Token(TokenType type, std::string lexeme, std::any literal, int line) :
     
 }
 
+/**
+ * @brief Converts the Token object to a string representation.
+ * 
+ * This method generates a string that represents the Token object by combining
+ * its type, lexeme, literal value (if present), and the line number where the token
+ * was found. The type is converted to a string using the `magic_enum` library, and
+ * the literal value is extracted and formatted based on its type using `std::any_cast`.
+ * 
+ * @return A string representation of the Token object in the format:
+ *         "<type> <lexeme> <literal> <line>"
+ *         - `<type>`: The string representation of the token type.
+ *         - `<lexeme>`: The lexeme associated with the token.
+ *         - `<literal>`: The literal value if present, or "[no literal]" if absent.
+ *         - `<line>`: The line number where the token was found.
+ */
 std::string Token::toString(){
     const std::string str_enum = magic_enum::enum_name(this->type).data();
 

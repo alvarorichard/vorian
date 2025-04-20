@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include "../include/Scanner.hpp"
 
 class Vorian {
     private:
