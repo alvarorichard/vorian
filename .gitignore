@@ -14,4 +14,12 @@ build
 # arquivo do vscode
 .vscode/settings.json
 
+# arquivos infer 
+*.json
+*.log
+*.txt
+*.xml
+
+
+
 
