@@ -1,0 +1,39 @@
+# BasedOnStyle: Google
+# IndentWidth: 2
+# ColumnLimit: 80
+# UseTab: Never
+
+# BraceWrapping:
+#   AfterControlStatement: true
+#   BeforeElse: true
+
+# AllowShortIfStatementsOnASingleLine: false
+# AllowShortLoopsOnASingleLine: false
+# AllowShortFunctionsOnASingleLine: false
+# IndentCaseLabels: false
+# SpacesBeforeTrailingComments: 1
+# AccessModifierOffset: -2
+# BreakBeforeBraces: Linux
+
+
+
+BasedOnStyle: Google
+IndentWidth: 2
+ColumnLimit: 80
+UseTab: Never
+
+BreakBeforeBraces: Custom      # ← habilita as opções abaixo
+BraceWrapping:
+  AfterFunction:  true         # { de função em nova linha
+  AfterControlStatement: true  # if/for/while ( ... ) ⏎ {
+  BeforeElse:      true
+
+AllowShortIfStatementsOnASingleLine:     false
+AllowShortLoopsOnASingleLine:            false
+AllowShortFunctionsOnASingleLine:        false
+IndentCaseLabels:       false
+SpacesBeforeTrailingComments: 1
+AccessModifierOffset:   -2
+
+# find . -type f \( -name '*.cpp' -o -name '*.hpp' \) \
+#   -exec clang-format -i -style=file {} +

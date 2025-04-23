@@ -16,3 +16,4 @@ task("clean")
         os.rm("a.out")
         os.rm("build")
     end)
+
