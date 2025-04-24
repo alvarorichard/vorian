@@ -21,7 +21,7 @@ struct Binary final : Expr, public std::enable_shared_from_this<Binary> {
   Token Oper;
   std::shared_ptr<Expr> right;
   Binary(std::shared_ptr<Expr> left, Token oper, std::shared_ptr<Expr> right);
-  std::any accept(ExprVisitor *visitor) override;
+  std::any accept(ExprVisitor* visitor) override;
   ~Binary() = default;
 };
 
@@ -38,7 +38,7 @@ struct Grouping final : Expr, public std::enable_shared_from_this<Grouping> {
 
   std::shared_ptr<Expr> right;
   Grouping(std::shared_ptr<Expr> expression);
-  std::any accept(ExprVisitor *visitor) override;
+  std::any accept(ExprVisitor* visitor) override;
   ~Grouping() = default;
 };
 
@@ -47,7 +47,7 @@ struct Literal final : Expr, public std::enable_shared_from_this<Literal> {
 
   std::shared_ptr<Expr> right;
   Literal(std::any value);
-  std::any accept(ExprVisitor *visitor) override;
+  std::any accept(ExprVisitor* visitor) override;
   ~Literal() = default;
 };
 
@@ -55,6 +55,6 @@ struct Unary final : Expr, public std::enable_shared_from_this<Unary> {
   Token Oper;
   std::shared_ptr<Expr> right;
   Unary(Token oper, std::shared_ptr<Expr> right);
-  std::any accept(ExprVisitor *visitor) override;
+  std::any accept(ExprVisitor* visitor) override;
   ~Unary() = default;
 };

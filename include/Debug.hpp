@@ -11,12 +11,12 @@
  * whether any errors have occurred during the execution of the program.
  */
 class Debug {
-private:
-  static void report(int, const std::string &, const std::string &);
+ private:
+  static void report(int, const std::string&, const std::string&);
 
-public:
+ public:
   inline static bool hadError = false;
-  static void error(int line, const std::string &);
+  static void error(int line, const std::string&);
 };
 
 #endif

@@ -7,7 +7,7 @@
 #include "TokenType.hpp"
 
 class Token {
-public:
+ public:
   TokenType type;
   std::string lexeme;
   std::any literal;

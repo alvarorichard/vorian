@@ -20,17 +20,15 @@ namespace fs = std::filesystem;
  * opened.
  * @throws std::exit with code 77 if there is an error reading the file.
  */
-void Vorian::runFile(const std::string &path)
+void Vorian::runFile(const std::string& path)
 {
-  if (!fs::exists(path))
-  {
+  if (!fs::exists(path)) {
     std::cerr << "File not found.\n";
     std::exit(66);
   }
 
   std::ifstream file(path, std::ios::binary | std::ios::ate);
-  if (!file)
-  {
+  if (!file) {
     std::cerr << "Permission error opening file.\n";
     std::exit(66);
   }
@@ -39,16 +37,14 @@ void Vorian::runFile(const std::string &path)
   file.seekg(0, std::ios::beg);
   std::vector<char> buffer(size);
 
-  if (!file.read(buffer.data(), size))
-  {
+  if (!file.read(buffer.data(), size)) {
     std::cerr << "Error reading file.\n";
     std::exit(77);
   }
 
   std::string content(buffer.begin(), buffer.end());
   run(content);
-  if (Debug::hadError)
-  {
+  if (Debug::hadError) {
     std::exit(65);
   }
 }
@@ -68,10 +64,8 @@ void Vorian::runPrompt()
 {
   std::string line;
   std::cout << "Vorian> ";
-  for (;;)
-  {
-    if (!std::getline(std::cin, line) || line == "exit")
-    {
+  for (;;) {
+    if (!std::getline(std::cin, line) || line == "exit") {
       break;
       ;
     }
@@ -80,12 +74,11 @@ void Vorian::runPrompt()
   }
 }
 
-void Vorian::run(const std::string &source)
+void Vorian::run(const std::string& source)
 {
   Scanner scanner(source);
   std::vector<Token> tokens = scanner.scanTokens();
-  for (auto &t : tokens)
-  {
+  for (auto& t : tokens) {
     std::cout << t.toString() << std::endl;
   }
 }

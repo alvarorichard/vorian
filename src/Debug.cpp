@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-void Debug::report(int line, const std::string &where,
-                   const std::string &message)
+void Debug::report(int line, const std::string& where,
+                   const std::string& message)
 {
   std::cerr << "[line " << line << "] Error" << where << ": " << message
             << std::endl;
@@ -19,7 +19,7 @@ void Debug::report(int line, const std::string &where,
  * @param line The line number where the error occurred.
  * @param message A descriptive message detailing the error.
  */
-void Debug::error(int line, const std::string &message)
+void Debug::error(int line, const std::string& message)
 {
   report(line, "", message);
 }

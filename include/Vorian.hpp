@@ -10,10 +10,10 @@
 #include "../include/Scanner.hpp"
 
 class Vorian {
-private:
-  static void run(const std::string &);
+ private:
+  static void run(const std::string&);
 
-public:
-  static void runFile(const std::string &);
+ public:
+  static void runFile(const std::string&);
   static void runPrompt();
 };

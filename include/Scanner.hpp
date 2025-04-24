@@ -20,7 +20,7 @@
  * @note This class assumes the source code is provided as a single string.
  */
 class Scanner {
-private:
+ private:
   int start = 0;
   int current = 0;
   int line = 1;
@@ -51,8 +51,8 @@ private:
   void identifier();
   void printTokens();
 
-public:
-  Scanner(const std::string &source);
+ public:
+  Scanner(const std::string& source);
   bool isAtEnd();
   std::vector<Token> scanTokens();
 };
