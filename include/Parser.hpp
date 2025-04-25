@@ -136,36 +136,37 @@
  * @brief Parses a primary expression.
  * @return A shared pointer to the parsed primary expression.
  */
-class Parser {
- public:  // private
-  struct ParseError : public std::runtime_error {
-    using std::runtime_error::runtime_error;
-  };
-
-  const std::vector<Token> tokens;
-  int current = 0;
-
-  ParseError error(const Token&, const std::string&);
-
-  void synchronize();
-
-  bool isAtEnd();
-  bool check(const TokenType&);
-  template <class... T>
-  bool match(T... types);
-
-  Token previous();
-  Token peek();
-  Token advance();
-  Token consume(const TokenType&, const std::string&);
-
-  std::shared_ptr<Expr> expression();
-  std::shared_ptr<Expr> equality();
-  std::shared_ptr<Expr> comparison();
-  std::shared_ptr<Expr> term();
-  std::shared_ptr<Expr> factor();
-  std::shared_ptr<Expr> unary();
-  std::shared_ptr<Expr> primary();
+ class Parser {
+    private:
+      struct ParseError : public std::runtime_error {
+        using std::runtime_error::runtime_error;
+      };
+  
+      const std::vector<Token> tokens;
+      int current = 0;
+  
+      ParseError error(const Token&, const std::string&);
+  
+      void synchronize();
+  
+      bool isAtEnd();
+      bool check(const TokenType&);
+      template<class...T>
+      bool match(T...types);
+  
+      Token previous();
+      Token peek();
+      Token advance();
+      Token consume(const TokenType&, const std::string&);
+  
+      std::shared_ptr<Expr> expression();
+      std::shared_ptr<Expr> equality();
+      std::shared_ptr<Expr> comparison();
+      std::shared_ptr<Expr> term();
+      std::shared_ptr<Expr> factor();
+      std::shared_ptr<Expr> unary();
+      std::shared_ptr<Expr> primary();
+      std::shared_ptr<Expr> assignment();
 
  public:
   Parser(const std::vector<Token>&);

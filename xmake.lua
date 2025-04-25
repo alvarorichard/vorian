@@ -7,6 +7,7 @@ set_toolchains("clang", { cxflags = "-std=c++23 -g -O3 -Wall -Wextra -fsanitize=
 target("vorian")
     set_kind("binary")
     add_files("src/*.cpp")
+    add_headerfiles("include/*.hpp")
     add_includedirs("include")
 
 -- Tarefa para limpar arquivos gerados

@@ -1,10 +1,13 @@
 #include "../include/Vorian.hpp"
 
+
 #include <cstdlib>
 #include <filesystem>
 #include <iostream>
 
 namespace fs = std::filesystem;
+
+#include "../include/Interpreter.hpp"
 
 /**
  * @brief Executes the contents of a file specified by its path.
@@ -20,15 +23,15 @@ namespace fs = std::filesystem;
  * opened.
  * @throws std::exit with code 77 if there is an error reading the file.
  */
-void Vorian::runFile(const std::string& path)
-{
-  if (!fs::exists(path)) {
+void Vorian::runFile(const std::string& path){
+
+  if(!fs::exists(path)){
     std::cerr << "File not found.\n";
     std::exit(66);
   }
 
   std::ifstream file(path, std::ios::binary | std::ios::ate);
-  if (!file) {
+  if(!file){
     std::cerr << "Permission error opening file.\n";
     std::exit(66);
   }
@@ -37,16 +40,15 @@ void Vorian::runFile(const std::string& path)
   file.seekg(0, std::ios::beg);
   std::vector<char> buffer(size);
 
-  if (!file.read(buffer.data(), size)) {
+  if(!file.read(buffer.data(), size)){
     std::cerr << "Error reading file.\n";
     std::exit(77);
   }
 
   std::string content(buffer.begin(), buffer.end());
   run(content);
-  if (Debug::hadError) {
-    std::exit(65);
-  }
+  if(Debug::hadError){ std::exit(65); }
+  if(Debug::hadError) { std::exit(70); } // Fixed syntax error
 }
 
 /**
@@ -78,15 +80,21 @@ void Vorian::run(const std::string& source)
 {
   Scanner scanner(source);
   std::vector<Token> tokens = scanner.scanTokens();
- if (Debug::hadError) {
-  return;
- 
- }
+  if (Debug::hadError) {
+    return;
+  }
 
- Parser parser{tokens};
- std::shared_ptr<Expr> expression = parser.parse();
- if (Debug::hadError) {
-  return;
- 
- }
+  Parser parser{tokens};
+  std::shared_ptr<Expr> expression = parser.parse();
+  if (Debug::hadError) {
+    return;
+  }
+
+  Interpreter interpreter;
+  try {
+    std::any result = interpreter.evaluate(expression);
+    std::cout << interpreter.stringify(result) << std::endl;
+  } catch (const std::exception& e) {
+    std::cerr << "Runtime error: " << e.what() << std::endl;
+  }
 }

@@ -9,6 +9,10 @@
 
 #include "Scanner.hpp"
 #include "Parser.hpp"
+#include "Interpreter.hpp"
+#include "Debug.hpp"
+#include "RuntimeError.hpp"
+#include "Expr.hpp"
 
 class Vorian {
  private:

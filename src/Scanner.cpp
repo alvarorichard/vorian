@@ -29,6 +29,8 @@
  *       a single string and processed sequentially.
  */
 #include "../include/Scanner.hpp"
+#include "../include/Debug.hpp"
+#include "../include/Token.hpp"
 
 #include <string>
 #include <unordered_map>
@@ -110,6 +112,9 @@ void Scanner::number()
       advance();
     }
   }
+  std::string text = source.substr(start, current - start);
+  double number = std::stod(std::string(text));
+  addToken(TokenType::NUMBER, number);
 }
 
 void Scanner::string()
@@ -162,6 +167,12 @@ void Scanner::printTokens()
     std::cout << " " << token.line << std::endl;
   }
 }
+
+// void Scanner::debugTokens() {
+//   for (const auto& token : tokens) {
+//     std::cout << "Token: " << tokenTypeToString(token.type) << ", Lexeme: " << token.lexeme << ", Line: " << token.line << std::endl;
+//   }
+// }
 
 bool Scanner::match(char expected)
 {
@@ -301,6 +312,7 @@ void Scanner::scanToken()
     case '\t':
       break;
     case '\n':
+      line++;
       break;
     case '"':
       string();

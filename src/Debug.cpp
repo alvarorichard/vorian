@@ -33,3 +33,10 @@ void Debug::error(Token token, const std::string& message)
     report(token.line, "at '" + token.lexeme + "'", message);
   }
 }
+
+static void runtimeError(const RuntimeError& error){
+  std::cerr << error.what() << "\n[line " << error.token.line
+            << "] Error: " << error.token.lexeme << std::endl;
+ // Debug::hadError = true;
+}
+
