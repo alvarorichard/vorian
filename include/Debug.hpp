@@ -2,6 +2,7 @@
 #define DEBUG_HPP
 
 #include <iostream>
+#include "Token.hpp">
 
 /**
  * @class Debug
@@ -17,6 +18,7 @@ class Debug {
  public:
   inline static bool hadError = false;
   static void error(int line, const std::string&);
+  static void error(Token token, const std::string&);
 };
 
 #endif

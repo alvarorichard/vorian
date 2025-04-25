@@ -23,3 +23,13 @@ void Debug::error(int line, const std::string& message)
 {
   report(line, "", message);
 }
+
+void Debug::error(Token token, const std::string& message)
+{
+  if (token.type == TokenType::VOR_EOF) {
+    report(token.line, "at end", message);
+
+  } else {
+    report(token.line, "at '" + token.lexeme + "'", message);
+  }
+}
