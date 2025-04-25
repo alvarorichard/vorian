@@ -78,7 +78,15 @@ void Vorian::run(const std::string& source)
 {
   Scanner scanner(source);
   std::vector<Token> tokens = scanner.scanTokens();
-  for (auto& t : tokens) {
-    std::cout << t.toString() << std::endl;
-  }
+ if (Debug::hadError) {
+  return;
+ 
+ }
+
+ Parser parser{tokens};
+ std::shared_ptr<Expr> expression = parser.parse();
+ if (Debug::hadError) {
+  return;
+ 
+ }
 }

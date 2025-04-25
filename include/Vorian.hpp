@@ -7,7 +7,8 @@
 #include <string>
 #include <vector>
 
-#include "../include/Scanner.hpp"
+#include "Scanner.hpp"
+#include "Parser.hpp"
 
 class Vorian {
  private:
